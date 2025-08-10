@@ -12,33 +12,47 @@ import Login from './components/backend/Login';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './components/backend/Dashboard';
 import RequireAuth from './components/common/RequireAuth';
+import {default as ShowServices} from './components/backend/services/Show';
+import {default as CreateServices} from './components/backend/services/Create';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-       <BrowserRouter>
-          <Routes>
-             <Route path="/" element={<Home/>} />
-             <Route path="/about" element={<About/>} />
-             <Route path="/services" element={<Services/>} />
-             <Route path="/projects" element={<Projects/>} />
-             <Route path="/blogs" element={<Blogs/>} />
-             <Route path='/contactus' element={<ContactUs/>} />
-             <Route path="/admin/login" element={<Login/>} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path='/contactus' element={<ContactUs />} />
+          <Route path="/admin/login" element={<Login />} />
 
-             <Route path="/admin/dashboard" element={
-               <RequireAuth>
-               <Dashboard/>
-               </RequireAuth>
-               } />
+          <Route path="/admin/dashboard" element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          } />
 
-          </Routes>
-       </BrowserRouter>
-       <ToastContainer 
-       position="top-center"
-       /> 
+          <Route path="/admin/services" element={
+            <RequireAuth>
+              <ShowServices />
+            </RequireAuth>
+          } />
+
+             <Route path="/admin/services/create" element={
+            <RequireAuth>
+              <CreateServices />
+            </RequireAuth>
+          } />
+
+        </Routes>
+      </BrowserRouter>
+      <ToastContainer
+        position="top-center"
+      />
     </>
   )
 }
